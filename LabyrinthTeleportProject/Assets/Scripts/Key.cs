@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crystal : PickUp
+public class Key : PickUp
 {
-    private int point = 5;
+    [SerializeField] private KeyColor keyColor;
 
     public override void Picked()
     {
-        GameManager.Instance.AddPoints(point);
+        GameManager.Instance.AddKey(keyColor);
         base.Picked();
     }
 }

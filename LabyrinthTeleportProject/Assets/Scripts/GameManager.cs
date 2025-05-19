@@ -20,6 +20,12 @@ public class GameManager : MonoBehaviour
     private bool endGame = false;
     private bool win = false;
 
+    public int points = 0;
+
+    private int redKey = 0;
+    private int greenKey = 0;
+    private int goldKey = 0;
+
     void Start()
     {
         InvokeRepeating("Stopper", 2f, 1f);
@@ -28,6 +34,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         PauseCheck();
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log($"Key red: {redKey}, key green: {greenKey}, key gold: {goldKey}");
+            Debug.Log($"Points: {points}");
+        }
     }
 
     private void PauseCheck()
@@ -42,6 +54,38 @@ public class GameManager : MonoBehaviour
             {
                 PauseGame();
             }
+        }
+    }
+
+    public void AddPoints(int point)
+    {
+        points += point;
+    }
+
+    public void AddRemoveTime(int addRemove)
+    {
+        timeToEnd += addRemove;
+    }
+
+    public void FreezTime(int freez)
+    {
+        CancelInvoke("Stopper");
+        InvokeRepeating("Stopper", freez, 1f);
+    }
+
+    public void AddKey(KeyColor keyColor)
+    {
+        if (keyColor == KeyColor.Red)
+        {
+            redKey++;
+        }
+        else if (keyColor == KeyColor.Green)
+        {
+            greenKey++;
+        }
+        else if (keyColor == KeyColor.Gold)
+        {
+            goldKey++;
         }
     }
 

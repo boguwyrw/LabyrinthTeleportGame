@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crystal : PickUp
+public class FreezTime : PickUp
 {
-    private int point = 5;
+    [SerializeField] private int freezTime = 10;
 
     public override void Picked()
     {
-        GameManager.Instance.AddPoints(point);
+        GameManager.Instance.FreezTime(freezTime);
         base.Picked();
     }
 }
